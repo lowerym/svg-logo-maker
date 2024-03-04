@@ -15,6 +15,7 @@ function writeToFile(fileName, answers) {
   svgString += "<g>";
   svgString += `${answers.shape}`;
 
+  // Depending on which shape the user selects, this adds polygon properties and shape color to SVG string
   let shapeChoice;
   if (answers.shape === "Triangle") {
     shapeChoice = new Triangle();
@@ -26,4 +27,6 @@ function writeToFile(fileName, answers) {
     shapeChoice = new Circle();
     svgString += `<circle cx="150" cy="115" r="80" fill="${answers.shapeBackgroundColor}" />`
   }
+
+  svgString += `<text x="150" y="130" text-anchor="middle" font-size="24" fill="${answers.textColor}">${answers.text}</text>`
 }
