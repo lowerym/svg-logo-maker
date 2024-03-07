@@ -40,3 +40,48 @@ function writeToFile(fileName, answers) {
     err ? console.log(err) : console.log("Generated logo.svg");
   });
 }
+
+// Function uses inquirer to prompt user to answer questions in command line and save inputs
+function promptUser() {
+  inquirer
+  .prompt([
+    // Text input
+    {
+      type: "input",
+      message: "What text would you like to be in the logo? (Enter no more than three characters)",
+      name: "text",
+    },
+    {
+      // Text color input
+      type: "input",
+      message: "Choose your text color (Enter color keyword or hexadecimal number)",
+      name: "textColor",
+    },
+    {
+      // Shape choice
+      type: "list",
+      message: "What shape do you want the logo to render?",
+      choices: ["Triangle", "Square", "Circle"],
+      name: "shape",
+    },
+    {
+      // Shape color input
+      type: "input",
+      message: "Choose your shape color (Enter color keyword or hexadecimal number)",
+      name: "shapeColor",
+    },
+  ])
+  .then((answers) => {
+    // If user enters more than three characters for text, run error
+    if (answers.text.length > 3) {
+      console.log("Must enter no more than 3 characters");
+      promptUser();
+    } else {
+      // Call function to generate SVG file
+      writeToFile("logo.svg", answers);
+    }
+  });
+}
+
+// Call promptUser function so prompts start up when application is running
+promptUser();
