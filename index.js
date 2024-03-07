@@ -11,7 +11,7 @@ const { Triangle, Square, Circle } = require("./lib/shapes");
 function writeToFile(fileName, answers) {
   let svgString = "";
   svgString =
-  '<svg version="1.1" width="500" height="500" xmlns="http://www.w3.org/2000/svg">'
+  '<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">'
   svgString += "<g>";
   svgString += `${answers.shape}`;
 
@@ -19,13 +19,13 @@ function writeToFile(fileName, answers) {
   let shapeChoice;
   if (answers.shape === "Triangle") {
     shapeChoice = new Triangle();
-    svgString += `<polygon points="150, 18 244, 182 56, 182" fill="${answers.shapeBackgroundColor}" />`;
+    svgString += `<polygon points="150, 18 244, 182 56, 182" fill="${answers.shapeColor}" />`;
   } else if (answers.shape === "Square") {
     shapeChoice = new Square();
-    svgString += `<rect x="73" y="40" width="250" height="250" fill="${answers.shapeBackgroundColor}" />`;
+    svgString += `<rect x="73" y="40" width="300" height="200" fill="${answers.shapeColor}" />`;
   } else {
     shapeChoice = new Circle();
-    svgString += `<circle cx="150" cy="115" r="80" fill="${answers.shapeBackgroundColor}" />`
+    svgString += `<circle cx="150" cy="115" r="80" fill="${answers.shapeColor}" />`
   }
 
   // <text> tag adds text alignment, text-content/text-color taken from user input and adds default font size of "24"
